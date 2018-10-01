@@ -1,0 +1,6 @@
+#our church services start at 8:30am and 11am
+#Run shell script every minute from 8:15-8:45 and 10:45-11:15 on Sundays
+15-45 8 * * 0 /home/pi/scripts/CheckOBS.sh
+
+45-59 10 * * 0 /home/pi/scripts/CheckOBS.sh
+00-15 11 * * 0 /home/pi/scripts/CheckOBS.sh
