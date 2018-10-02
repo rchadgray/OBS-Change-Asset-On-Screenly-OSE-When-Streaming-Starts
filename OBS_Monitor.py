@@ -44,16 +44,12 @@ async def main():
                 logger(str(HitURLToLoadAsset))
 
     except asyncio.TimeoutError:
-        await obsws.close()
-        print('timeout!')
         logger("OBS NOT RUNNING-- TIMEOUT!")
 
     except OSError:
-        await obsws.close()
         logger("OBS IS NOT RUNNING")
 
     except:
-        await obsws.close()
         logger(str(sys.exc_info()[1]))
 
     finally:
