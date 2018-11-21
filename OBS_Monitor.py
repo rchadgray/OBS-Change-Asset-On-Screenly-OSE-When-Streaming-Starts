@@ -1,4 +1,4 @@
-#! /usr/bin/python3
+ #! /usr/bin/python3
 
 import asyncio
 import urllib.request
@@ -32,17 +32,23 @@ async def main():
             logger(str(format(event.type_name)))
 
             if(format(event.type_name) == "StreamStarting"):
-                # change the IP to the Screenly OSE computer
-                # this is the asset_id of the RTMP streaming asset in Screely OSE
-                HitURLToLoadAsset = urllib.request.urlopen("http://10.11.0.159/api/v1/assets/control/asset&b0983c0918b94856900040d9a9e8bdbf").read()
-                logger(str(HitURLToLoadAsset))
+                try:
+                    # change the IP to the Screenly OSE computer
+                    # this is the asset_id of the RTMP streaming asset in Screely OSE
+                    HitURLToLoadAsset = urllib.request.urlopen("http://10.11.0.159/api/v1/assets/control/asset&b0983c0918b94856900040d9a9e8bdbf").read()
+                    logger(str(HitURLToLoadAsset))
+                except:
+                    logger("FAILED TO CONNECT TO SCREENLY OSE")
 
             if(format(event.type_name) == "StreamStopped"):
-                # change the IP to the Screenly OSE computer
-                # this is another asset in Screely OSE
-                HitURLToLoadAsset = urllib.request.urlopen("http://10.11.0.159/api/v1/assets/control/asset&3b2fb67002364b269d0c2674a628533c").read()
-                logger(str(HitURLToLoadAsset))
-
+                try:
+                    # change the IP to the Screenly OSE computer
+                    # this is another asset in Screely OSE
+                    HitURLToLoadAsset = urllib.request.urlopen("http://10.11.0.159/api/v1/assets/control/asset&3b2fb67002364b269d0c2674a628533c").read()
+                    logger(str(HitURLToLoadAsset))
+                except:
+                    logger("FAILED TO CONNECT TO SCREENLY OSE")
+                    
     except asyncio.TimeoutError:
         logger("OBS NOT RUNNING-- TIMEOUT!")
 
